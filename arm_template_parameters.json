@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "value": "ADF-dev-tcs"
+        },
+        "AzureBlobStorageLS_connectionString": {
+            "value": ""
+        },
+        "DS_DataLanding_properties_typeProperties_folderPath": {
+            "value": "@dataset().inputDirectoryPath"
+        },
+        "AzureKeyVaultdev_properties_typeProperties_baseUrl": {
+            "value": "https://KV-dev-tcs.vault.azure.net/"
+        }
+    }
+}
