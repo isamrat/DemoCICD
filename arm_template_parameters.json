@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "factoryName": {
-            "value": "ADF-dev-tcs"
+            "value": "adf-dev-tcs"
         },
         "AzureBlobStorageLS_connectionString": {
             "value": ""
