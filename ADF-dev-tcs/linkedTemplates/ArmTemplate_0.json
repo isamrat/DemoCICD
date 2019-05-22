@@ -5,7 +5,7 @@
         "factoryName": {
             "type": "string",
             "metadata": "Data Factory Name",
-            "defaultValue": "adf-dev-tcs"
+            "defaultValue": "ADF-dev-tcs"
         },
         "AzureBlobStorageLS_connectionString": {
             "type": "secureString",
@@ -118,30 +118,6 @@
                             "fieldList": [
                                 "childItems"
                             ]
-                        }
-                    },
-                    {
-                        "name": "ACT_FilterFiles_TXT",
-                        "description": "This activity is for filtering the txt files",
-                        "type": "Filter",
-                        "dependsOn": [
-                            {
-                                "activity": "ACT_Metadata_In",
-                                "dependencyConditions": [
-                                    "Succeeded"
-                                ]
-                            }
-                        ],
-                        "userProperties": [],
-                        "typeProperties": {
-                            "items": {
-                                "value": "@activity('ACT_Metadata_In').output.childItems",
-                                "type": "Expression"
-                            },
-                            "condition": {
-                                "value": "@endswith(item().name,'.txt')",
-                                "type": "Expression"
-                            }
                         }
                     }
                 ],

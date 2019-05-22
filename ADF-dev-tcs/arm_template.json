@@ -5,7 +5,7 @@
         "factoryName": {
             "type": "string",
             "metadata": "Data Factory Name",
-            "defaultValue": "adf-dev-tcs"
+            "defaultValue": "ADF-dev-tcs"
         },
         "AzureBlobStorageLS_connectionString": {
             "type": "secureString",
@@ -24,81 +24,6 @@
         "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
     },
     "resources": [
-        {
-            "name": "[concat(parameters('factoryName'), '/PL_DemoDataIngestCICD')]",
-            "type": "Microsoft.DataFactory/factories/pipelines",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "activities": [
-                    {
-                        "name": "ACT_Metadata_In",
-                        "type": "GetMetadata",
-                        "dependsOn": [],
-                        "policy": {
-                            "timeout": "7.00:00:00",
-                            "retry": 0,
-                            "retryIntervalInSeconds": 30,
-                            "secureOutput": false,
-                            "secureInput": false
-                        },
-                        "userProperties": [],
-                        "typeProperties": {
-                            "dataset": {
-                                "referenceName": "DS_DataLanding",
-                                "type": "DatasetReference",
-                                "parameters": {
-                                    "inputDirectoryPath": {
-                                        "value": "@pipeline().parameters.landing_file_path",
-                                        "type": "Expression"
-                                    }
-                                }
-                            },
-                            "fieldList": [
-                                "childItems"
-                            ]
-                        }
-                    },
-                    {
-                        "name": "ACT_FilterFiles_TXT",
-                        "description": "This activity is for filtering the txt files",
-                        "type": "Filter",
-                        "dependsOn": [
-                            {
-                                "activity": "ACT_Metadata_In",
-                                "dependencyConditions": [
-                                    "Succeeded"
-                                ]
-                            }
-                        ],
-                        "userProperties": [],
-                        "typeProperties": {
-                            "items": {
-                                "value": "@activity('ACT_Metadata_In').output.childItems",
-                                "type": "Expression"
-                            },
-                            "condition": {
-                                "value": "@endswith(item().name,'.txt')",
-                                "type": "Expression"
-                            }
-                        }
-                    }
-                ],
-                "parameters": {
-                    "landing_file_path": {
-                        "type": "string",
-                        "defaultValue": "landing/EMP_DATA"
-                    },
-                    "preprocess_file_path": {
-                        "type": "string",
-                        "defaultValue": "preprocess/EMP_DATA"
-                    }
-                },
-                "annotations": []
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/datasets/DS_DataLanding')]"
-            ]
-        },
         {
             "name": "[concat(parameters('factoryName'), '/DS_DataLanding')]",
             "type": "Microsoft.DataFactory/factories/datasets",
@@ -160,6 +85,57 @@
                 }
             },
             "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/PL_DemoDataIngestCICD')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "ACT_Metadata_In",
+                        "type": "GetMetadata",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "7.00:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "dataset": {
+                                "referenceName": "DS_DataLanding",
+                                "type": "DatasetReference",
+                                "parameters": {
+                                    "inputDirectoryPath": {
+                                        "value": "@pipeline().parameters.landing_file_path",
+                                        "type": "Expression"
+                                    }
+                                }
+                            },
+                            "fieldList": [
+                                "childItems"
+                            ]
+                        }
+                    }
+                ],
+                "parameters": {
+                    "landing_file_path": {
+                        "type": "string",
+                        "defaultValue": "landing/EMP_DATA"
+                    },
+                    "preprocess_file_path": {
+                        "type": "string",
+                        "defaultValue": "preprocess/EMP_DATA"
+                    }
+                },
+                "annotations": []
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/datasets/DS_DataLanding')]"
+            ]
         }
     ]
 }
