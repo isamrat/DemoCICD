@@ -1,0 +1,205 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory Name",
+            "defaultValue": "adf-tcsteg-batchingestion-t02"
+        },
+        "ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_landing_file_full_path": {
+            "type": "string",
+            "defaultValue": "landing/ADW"
+        },
+        "ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_preprocess_file_full_path": {
+            "type": "string",
+            "defaultValue": "preprocess/ADW"
+        },
+        "ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_rawdata_file_full_path": {
+            "type": "string",
+            "defaultValue": "rawdata/ADW"
+        },
+        "ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_archive_file_full_path": {
+            "type": "string",
+            "defaultValue": "archive/ADW"
+        },
+        "EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_landing_file_full_path": {
+            "type": "string",
+            "defaultValue": "landing/EDW"
+        },
+        "EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_preprocess_file_full_path": {
+            "type": "string",
+            "defaultValue": "preprocess/EDW"
+        },
+        "EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_rawdata_file_full_path": {
+            "type": "string",
+            "defaultValue": "rawdata/EDW"
+        },
+        "EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_archive_file_full_path": {
+            "type": "string",
+            "defaultValue": "archive/EDW"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('factoryName'), '/pipeline1')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "ACT_GetMetadata_Landing",
+                        "type": "GetMetadata",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "7.00:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "dataset": {
+                                "referenceName": "AzureBlob1",
+                                "type": "DatasetReference",
+                                "parameters": {}
+                            },
+                            "fieldList": [
+                                "childItems"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "Custom2",
+                        "description": "Activity to validate File Name",
+                        "type": "Custom",
+                        "dependsOn": [
+                            {
+                                "activity": "ACT_GetMetadata_Landing",
+                                "dependencyConditions": [
+                                    "Succeeded"
+                                ]
+                            }
+                        ],
+                        "policy": {
+                            "timeout": "7.00:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "command": "Validate_FileName.exe",
+                            "resourceLinkedService": {
+                                "referenceName": "LS_ABLB_AzureStorage",
+                                "type": "LinkedServiceReference"
+                            },
+                            "folderPath": "edl-scripts/Read Activity Json",
+                            "extendedProperties": {
+                                "Get_MetaData_Output": {
+                                    "value": "@string(activity('ACT_GetMetadata_Landing').output.childItems)",
+                                    "type": "Expression"
+                                },
+                                "FolderPath": {
+                                    "value": "--",
+                                    "type": "Expression"
+                                },
+                                "Validate_Files": "^[A-Za-z]+[_]\\w+[_][A-Za-z]+[_]\\d{8}[.]",
+                                "Invlidate_Files": "-"
+                            },
+                            "referenceObjects": {
+                                "linkedServices": [],
+                                "datasets": []
+                            }
+                        },
+                        "linkedServiceName": {
+                            "referenceName": "LS_BatchAccount_atategtcst09",
+                            "type": "LinkedServiceReference"
+                        }
+                    }
+                ],
+                "variables": {
+                    "A": {
+                        "type": "String",
+                        "defaultValue": "aa"
+                    }
+                },
+                "annotations": []
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/ADWTrigger')]",
+            "type": "Microsoft.DataFactory/factories/triggers",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "description": "ADW Trigger",
+                "annotations": [],
+                "runtimeState": "Stopped",
+                "pipelines": [
+                    {
+                        "pipelineReference": {
+                            "referenceName": "PL_Data_Ingestion_With_ABLB",
+                            "type": "PipelineReference"
+                        },
+                        "parameters": {
+                            "landing_file_full_path": "[parameters('ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_landing_file_full_path')]",
+                            "preprocess_file_full_path": "[parameters('ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_preprocess_file_full_path')]",
+                            "rawdata_file_full_path": "[parameters('ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_rawdata_file_full_path')]",
+                            "archive_file_full_path": "[parameters('ADWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_archive_file_full_path')]"
+                        }
+                    }
+                ],
+                "type": "ScheduleTrigger",
+                "typeProperties": {
+                    "recurrence": {
+                        "frequency": "Minute",
+                        "interval": 15,
+                        "startTime": "2019-04-23T09:27:00Z",
+                        "timeZone": "UTC"
+                    }
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/EDWTrigger')]",
+            "type": "Microsoft.DataFactory/factories/triggers",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "description": "EDW Triger",
+                "annotations": [],
+                "runtimeState": "Stopped",
+                "pipelines": [
+                    {
+                        "pipelineReference": {
+                            "referenceName": "PL_Data_Ingestion_With_ABLB",
+                            "type": "PipelineReference"
+                        },
+                        "parameters": {
+                            "landing_file_full_path": "[parameters('EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_landing_file_full_path')]",
+                            "preprocess_file_full_path": "[parameters('EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_preprocess_file_full_path')]",
+                            "rawdata_file_full_path": "[parameters('EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_rawdata_file_full_path')]",
+                            "archive_file_full_path": "[parameters('EDWTrigger_properties_PL_Data_Ingestion_With_ABLB_parameters_archive_file_full_path')]"
+                        }
+                    }
+                ],
+                "type": "ScheduleTrigger",
+                "typeProperties": {
+                    "recurrence": {
+                        "frequency": "Minute",
+                        "interval": 15,
+                        "startTime": "2019-04-23T09:27:00Z",
+                        "timeZone": "UTC"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
