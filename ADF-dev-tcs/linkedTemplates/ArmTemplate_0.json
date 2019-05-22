@@ -5,155 +5,19 @@
         "factoryName": {
             "type": "string",
             "metadata": "Data Factory Name",
-            "defaultValue": "adf-tcsteg-batchingestion-t02"
+            "defaultValue": "adf-dev-tcs"
         },
-        "LS_BatchAccount_atategtcst09_accessKey": {
+        "AzureBlobStorageLS_connectionString": {
             "type": "secureString",
-            "metadata": "Secure string for 'accessKey' of 'LS_BatchAccount_atategtcst09'"
+            "metadata": "Secure string for 'connectionString' of 'AzureBlobStorageLS'"
         },
-        "LS_AKV_KeyVaultLinkedService_properties_typeProperties_baseUrl": {
+        "AzureKeyVaultdev_properties_typeProperties_baseUrl": {
             "type": "string",
-            "defaultValue": "https://akvtegtcst01.vault.azure.net/"
+            "defaultValue": "https://KV-dev-tcs.vault.azure.net/"
         },
-        "LS_ABLB_AzureStorage_properties_typeProperties_connectionString_secretName": {
+        "DS_DataLanding_properties_typeProperties_folderPath": {
             "type": "string",
-            "defaultValue": "TEGStorageAccountConn"
-        },
-        "AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
-            "type": "string",
-            "defaultValue": "https://adlstegtcst01.azuredatalakestore.net/webhdfs/v1"
-        },
-        "AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
-            "type": "string",
-            "defaultValue": "41c43545-2801-4487-a0bc-f741ede8f483"
-        },
-        "AzureDataLakeStore1_properties_typeProperties_tenant": {
-            "type": "string",
-            "defaultValue": "65410815-4383-4d18-8229-5c222583d04b"
-        },
-        "AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
-            "type": "string",
-            "defaultValue": "fe2eadd6-392f-4b79-a08a-3f2ee159ef5f"
-        },
-        "AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
-            "type": "string",
-            "defaultValue": "rg-sse-retail-teg-t01"
-        },
-        "LS_BatchAccount_atategtcst09_properties_typeProperties_accountName": {
-            "type": "string",
-            "defaultValue": "atategtcst09"
-        },
-        "LS_BatchAccount_atategtcst09_properties_typeProperties_batchUri": {
-            "type": "string",
-            "defaultValue": "https://atategtcst09.eastus2.batch.azure.com"
-        },
-        "DS_BLOB_Output_Preprocess_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_BLOB_Output_Preprocess_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "preprocess"
-        },
-        "DS_BLOB_Input_Landing_GZip_File_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": "@item().name"
-        },
-        "DS_BLOB_Input_Landing_GZip_File_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "landing/EDW"
-        },
-        "DS_BLOB_Input_Landing_Zip_File_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": "@item().name"
-        },
-        "DS_BLOB_Input_Landing_Zip_File_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "landing/EDW"
-        },
-        "DS_BLOB_ForEach_Input_Landing_AnyFile_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": "@item().name"
-        },
-        "DS_BLOB_ForEach_Input_Landing_AnyFile_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "landing/EDW"
-        },
-        "DS_Copy_AnyFile_Landing_To_Archive_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": "@concat('Archive_',item().name)"
-        },
-        "DS_Copy_AnyFile_Landing_To_Archive_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "archive/EDW"
-        },
-        "DS_BLOB_Input_Landing_All_Files_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_BLOB_Input_Landing_All_Files_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "landing/EDW"
-        },
-        "DS_ABLB_Source_AllFiles_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_ABLB_Source_AllFiles_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "source/EDW"
-        },
-        "DS_ABLB_Archive_All_Files_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_ABLB_Archive_All_Files_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "archive"
-        },
-        "DS_BLOB_Input_Preprocess_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": "@item().name"
-        },
-        "DS_BLOB_Input_Preprocess_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "preprocess"
-        },
-        "DS_BLOB_Output_RawData_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": "@item().name"
-        },
-        "DS_BLOB_Output_RawData_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "@concat('rawdata/',substring(item().name,0,indexof(item().name,'_')),'/',substring(item().name,sub(lastindexof(item().name,'_'),2),2),'/',substring(item().name,add(1,lastindexof(item().name,'_')),4),'/',substring(item().name,add(5,lastindexof(item().name,'_')),2),'/',substring(item().name,add(7,lastindexof(item().name,'_')),2))"
-        },
-        "DS_ABLB_Rawdata_All_Files_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_ABLB_Rawdata_All_Files_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "rawdata"
-        },
-        "DS_GetMetadata_ABLB_Londing_AllFiles_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "@dataset().Input"
-        },
-        "DS_ABLB_Output_TxtFile_Preprocess_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_ABLB_Output_TxtFile_Preprocess_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "dd"
-        },
-        "DS_ABLB_Input_TxtFile_Landing_properties_typeProperties_fileName": {
-            "type": "string",
-            "defaultValue": ""
-        },
-        "DS_ABLB_Input_TxtFile_Landing_properties_typeProperties_folderPath": {
-            "type": "string",
-            "defaultValue": "stotegtcst01"
+            "defaultValue": "@dataset().inputDirectoryPath"
         }
     },
     "variables": {
@@ -161,544 +25,140 @@
     },
     "resources": [
         {
-            "name": "[concat(parameters('factoryName'), '/MYINTEGRATIONRUNTIME')]",
-            "type": "Microsoft.DataFactory/factories/integrationRuntimes",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "type": "SelfHosted",
-                "description": "MY INTEGRATION RUNTIME",
-                "typeProperties": {}
-            },
-            "dependsOn": []
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/LS_AKV_KeyVaultLinkedService')]",
+            "name": "[concat(parameters('factoryName'), '/AzureBlobStorageLS')]",
             "type": "Microsoft.DataFactory/factories/linkedServices",
             "apiVersion": "2018-06-01",
             "properties": {
-                "description": "Linked Service to access the Azure Key Vault",
                 "annotations": [],
-                "type": "AzureKeyVault",
+                "type": "AzureBlobStorage",
                 "typeProperties": {
-                    "baseUrl": "[parameters('LS_AKV_KeyVaultLinkedService_properties_typeProperties_baseUrl')]"
+                    "connectionString": "[parameters('AzureBlobStorageLS_connectionString')]"
                 }
             },
             "dependsOn": []
         },
         {
-            "name": "[concat(parameters('factoryName'), '/PL_Variable')]",
+            "name": "[concat(parameters('factoryName'), '/AzureKeyVaultdev')]",
+            "type": "Microsoft.DataFactory/factories/linkedServices",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "annotations": [],
+                "type": "AzureKeyVault",
+                "typeProperties": {
+                    "baseUrl": "[parameters('AzureKeyVaultdev_properties_typeProperties_baseUrl')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/DS_DataLanding')]",
+            "type": "Microsoft.DataFactory/factories/datasets",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "linkedServiceName": {
+                    "referenceName": "AzureBlobStorageLS",
+                    "type": "LinkedServiceReference"
+                },
+                "parameters": {
+                    "inputDirectoryPath": {
+                        "type": "string",
+                        "defaultValue": "landing/EMP_DATA"
+                    }
+                },
+                "annotations": [],
+                "type": "AzureBlob",
+                "typeProperties": {
+                    "format": {
+                        "type": "TextFormat",
+                        "columnDelimiter": ",",
+                        "rowDelimiter": "",
+                        "treatEmptyAsNull": true,
+                        "skipLineCount": 0,
+                        "firstRowAsHeader": false
+                    },
+                    "folderPath": {
+                        "value": "[parameters('DS_DataLanding_properties_typeProperties_folderPath')]",
+                        "type": "Expression"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageLS')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('factoryName'), '/PL_DemoDataIngestCICD')]",
             "type": "Microsoft.DataFactory/factories/pipelines",
             "apiVersion": "2018-06-01",
             "properties": {
                 "activities": [
                     {
-                        "name": "If Condition1",
-                        "type": "IfCondition",
+                        "name": "ACT_Metadata_In",
+                        "type": "GetMetadata",
                         "dependsOn": [],
+                        "policy": {
+                            "timeout": "7.00:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
                         "userProperties": [],
                         "typeProperties": {
-                            "expression": {
-                                "value": "@variables('a')",
+                            "dataset": {
+                                "referenceName": "DS_DataLanding",
+                                "type": "DatasetReference",
+                                "parameters": {
+                                    "inputDirectoryPath": {
+                                        "value": "@pipeline().parameters.landing_file_path",
+                                        "type": "Expression"
+                                    }
+                                }
+                            },
+                            "fieldList": [
+                                "childItems"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "ACT_FilterFiles_TXT",
+                        "description": "This activity is for filtering the txt files",
+                        "type": "Filter",
+                        "dependsOn": [
+                            {
+                                "activity": "ACT_Metadata_In",
+                                "dependencyConditions": [
+                                    "Succeeded"
+                                ]
+                            }
+                        ],
+                        "userProperties": [],
+                        "typeProperties": {
+                            "items": {
+                                "value": "@activity('ACT_Metadata_In').output.childItems",
                                 "type": "Expression"
                             },
-                            "ifFalseActivities": [
-                                {
-                                    "name": "Set Variable2",
-                                    "type": "SetVariable",
-                                    "dependsOn": [],
-                                    "userProperties": [],
-                                    "typeProperties": {
-                                        "variableName": "b",
-                                        "value": "Incorrect"
-                                    }
-                                }
-                            ],
-                            "ifTrueActivities": [
-                                {
-                                    "name": "Set Variable1",
-                                    "type": "SetVariable",
-                                    "dependsOn": [],
-                                    "userProperties": [],
-                                    "typeProperties": {
-                                        "variableName": "b",
-                                        "value": "Correct"
-                                    }
-                                }
-                            ]
+                            "condition": {
+                                "value": "@endswith(item().name,'.txt')",
+                                "type": "Expression"
+                            }
                         }
                     }
                 ],
-                "variables": {
-                    "a": {
-                        "type": "Boolean"
+                "parameters": {
+                    "landing_file_path": {
+                        "type": "string",
+                        "defaultValue": "landing/EMP_DATA"
                     },
-                    "b": {
-                        "type": "String"
+                    "preprocess_file_path": {
+                        "type": "string",
+                        "defaultValue": "preprocess/EMP_DATA"
                     }
                 },
                 "annotations": []
             },
-            "dependsOn": []
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/LS_ABLB_AzureStorage')]",
-            "type": "Microsoft.DataFactory/factories/linkedServices",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "Linked Service for Azure Blob in AzureStorage",
-                "annotations": [],
-                "type": "AzureBlobStorage",
-                "typeProperties": {
-                    "connectionString": {
-                        "type": "AzureKeyVaultSecret",
-                        "store": {
-                            "referenceName": "LS_AKV_KeyVaultLinkedService",
-                            "type": "LinkedServiceReference"
-                        },
-                        "secretName": "[parameters('LS_ABLB_AzureStorage_properties_typeProperties_connectionString_secretName')]"
-                    }
-                }
-            },
             "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_AKV_KeyVaultLinkedService')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/AzureDataLakeStore1')]",
-            "type": "Microsoft.DataFactory/factories/linkedServices",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "annotations": [],
-                "type": "AzureDataLakeStore",
-                "typeProperties": {
-                    "dataLakeStoreUri": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]",
-                    "servicePrincipalId": "[parameters('AzureDataLakeStore1_properties_typeProperties_servicePrincipalId')]",
-                    "servicePrincipalKey": {
-                        "type": "AzureKeyVaultSecret",
-                        "store": {
-                            "referenceName": "LS_AKV_KeyVaultLinkedService",
-                            "type": "LinkedServiceReference"
-                        },
-                        "secretName": "TEGServicePrincipalKey"
-                    },
-                    "tenant": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]",
-                    "subscriptionId": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]",
-                    "resourceGroupName": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_AKV_KeyVaultLinkedService')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/LS_BatchAccount_atategtcst09')]",
-            "type": "Microsoft.DataFactory/factories/linkedServices",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "annotations": [],
-                "type": "AzureBatch",
-                "typeProperties": {
-                    "accountName": "[parameters('LS_BatchAccount_atategtcst09_properties_typeProperties_accountName')]",
-                    "accessKey": {
-                        "type": "SecureString",
-                        "value": "[parameters('LS_BatchAccount_atategtcst09_accessKey')]"
-                    },
-                    "batchUri": "[parameters('LS_BatchAccount_atategtcst09_properties_typeProperties_batchUri')]",
-                    "poolName": "atategtcst09",
-                    "linkedServiceName": {
-                        "referenceName": "LS_ABLB_AzureStorage",
-                        "type": "LinkedServiceReference"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_Output_Preprocess')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "Data Set Output BLOB Container: Preprocess",
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": "[parameters('DS_BLOB_Output_Preprocess_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_BLOB_Output_Preprocess_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_Input_Landing_GZip_File')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "DataSet for Blob Input Landing - GZipFiles using GZip Unzip Method",
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "format": {
-                        "type": "TextFormat",
-                        "columnDelimiter": ",",
-                        "rowDelimiter": "",
-                        "nullValue": "\\N",
-                        "treatEmptyAsNull": true,
-                        "skipLineCount": 0,
-                        "firstRowAsHeader": false
-                    },
-                    "compression": {
-                        "type": "GZip",
-                        "level": "Fastest"
-                    },
-                    "fileName": {
-                        "value": "[parameters('DS_BLOB_Input_Landing_GZip_File_properties_typeProperties_fileName')]",
-                        "type": "Expression"
-                    },
-                    "folderPath": "[parameters('DS_BLOB_Input_Landing_GZip_File_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_Input_Landing_Zip_File')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "DataSet for Blob Input Landing - Zip Files using Zip Deflate Copy method",
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "format": {
-                        "type": "TextFormat",
-                        "columnDelimiter": ",",
-                        "rowDelimiter": "",
-                        "nullValue": "\\N",
-                        "treatEmptyAsNull": true,
-                        "skipLineCount": 0,
-                        "firstRowAsHeader": false
-                    },
-                    "compression": {
-                        "type": "ZipDeflate",
-                        "level": "Fastest"
-                    },
-                    "fileName": {
-                        "value": "[parameters('DS_BLOB_Input_Landing_Zip_File_properties_typeProperties_fileName')]",
-                        "type": "Expression"
-                    },
-                    "folderPath": "[parameters('DS_BLOB_Input_Landing_Zip_File_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_ForEach_Input_Landing_AnyFile')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": {
-                        "value": "[parameters('DS_BLOB_ForEach_Input_Landing_AnyFile_properties_typeProperties_fileName')]",
-                        "type": "Expression"
-                    },
-                    "folderPath": "[parameters('DS_BLOB_ForEach_Input_Landing_AnyFile_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_Copy_AnyFile_Landing_To_Archive')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": {
-                        "value": "[parameters('DS_Copy_AnyFile_Landing_To_Archive_properties_typeProperties_fileName')]",
-                        "type": "Expression"
-                    },
-                    "folderPath": "[parameters('DS_Copy_AnyFile_Landing_To_Archive_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_Input_Landing_All_Files')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "parameters": {
-                    "Source": {
-                        "type": "String",
-                        "defaultValue": "EDW"
-                    }
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "format": {
-                        "type": "TextFormat",
-                        "columnDelimiter": ",",
-                        "rowDelimiter": "",
-                        "nullValue": "\\N",
-                        "treatEmptyAsNull": true,
-                        "skipLineCount": 0,
-                        "firstRowAsHeader": false
-                    },
-                    "fileName": "[parameters('DS_BLOB_Input_Landing_All_Files_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_BLOB_Input_Landing_All_Files_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_ABLB_Source_AllFiles')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": "[parameters('DS_ABLB_Source_AllFiles_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_ABLB_Source_AllFiles_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_ABLB_Archive_All_Files')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "format": {
-                        "type": "TextFormat",
-                        "columnDelimiter": ",",
-                        "rowDelimiter": "",
-                        "nullValue": "\\N",
-                        "treatEmptyAsNull": true,
-                        "skipLineCount": 0,
-                        "firstRowAsHeader": false
-                    },
-                    "fileName": "[parameters('DS_ABLB_Archive_All_Files_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_ABLB_Archive_All_Files_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_Input_Preprocess')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "Dataset to ",
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": {
-                        "value": "[parameters('DS_BLOB_Input_Preprocess_properties_typeProperties_fileName')]",
-                        "type": "Expression"
-                    },
-                    "folderPath": "[parameters('DS_BLOB_Input_Preprocess_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_BLOB_Output_RawData')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "Data Set Output BLOB Container: Rawdata",
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": {
-                        "value": "[parameters('DS_BLOB_Output_RawData_properties_typeProperties_fileName')]",
-                        "type": "Expression"
-                    },
-                    "folderPath": {
-                        "value": "[parameters('DS_BLOB_Output_RawData_properties_typeProperties_folderPath')]",
-                        "type": "Expression"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_ABLB_Rawdata_All_Files')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "format": {
-                        "type": "TextFormat",
-                        "columnDelimiter": ",",
-                        "rowDelimiter": "",
-                        "nullValue": "\\N",
-                        "treatEmptyAsNull": true,
-                        "skipLineCount": 0,
-                        "firstRowAsHeader": false
-                    },
-                    "fileName": "[parameters('DS_ABLB_Rawdata_All_Files_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_ABLB_Rawdata_All_Files_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_GetMetadata_ABLB_Londing_AllFiles')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "description": "DataSet of All file in Azure Storage Blob Container - Landing",
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "parameters": {
-                    "Input": {
-                        "type": "string",
-                        "defaultValue": "@pipeline().parameters.landing_file_full_path"
-                    }
-                },
-                "folder": {
-                    "name": "FLD_DynPath_ABLB_To_ADLS_DI"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "format": {
-                        "type": "TextFormat",
-                        "columnDelimiter": ",",
-                        "rowDelimiter": "",
-                        "nullValue": "\\N",
-                        "treatEmptyAsNull": true,
-                        "skipLineCount": 0,
-                        "firstRowAsHeader": false
-                    },
-                    "folderPath": {
-                        "value": "[parameters('DS_GetMetadata_ABLB_Londing_AllFiles_properties_typeProperties_folderPath')]",
-                        "type": "Expression"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_ABLB_Output_TxtFile_Preprocess')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": "[parameters('DS_ABLB_Output_TxtFile_Preprocess_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_ABLB_Output_TxtFile_Preprocess_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
-            ]
-        },
-        {
-            "name": "[concat(parameters('factoryName'), '/DS_ABLB_Input_TxtFile_Landing')]",
-            "type": "Microsoft.DataFactory/factories/datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "LS_ABLB_AzureStorage",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "AzureBlob",
-                "typeProperties": {
-                    "fileName": "[parameters('DS_ABLB_Input_TxtFile_Landing_properties_typeProperties_fileName')]",
-                    "folderPath": "[parameters('DS_ABLB_Input_TxtFile_Landing_properties_typeProperties_folderPath')]"
-                }
-            },
-            "dependsOn": [
-                "[concat(variables('factoryId'), '/linkedServices/LS_ABLB_AzureStorage')]"
+                "[concat(variables('factoryId'), '/datasets/DS_DataLanding')]"
             ]
         }
     ]
