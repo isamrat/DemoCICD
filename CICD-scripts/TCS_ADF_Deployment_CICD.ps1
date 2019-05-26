@@ -36,7 +36,7 @@ if ($predeployment -eq $true) {
 	}
 }
 
-Get-AzureRmureRmResourceGroup -Name $ResourceGroupName -ErrorVariable notPresent -ErrorAction SilentlyContinue
+Get-AzureRmResourceGroup -Name $ResourceGroupName -ErrorVariable notPresent -ErrorAction SilentlyContinue
 
 if ($notPresent)
 {
